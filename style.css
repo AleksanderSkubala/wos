@@ -42,6 +42,8 @@ h1 {
     -ms-transition: transform .3s ease;
     -webkit-transition: transform .3s ease;
     transition: transform .3s ease;
+    
+    background-color: silver;
 }
 
 .itemGrid:hover {
@@ -55,4 +57,15 @@ h1 {
     height: 100%;
 
     padding: 30px 0;
+}
+
+@media only screen and (max-width: 576px) {
+    .grid {
+        grid-template-columns: auto !important;
+    }
+    
+    .container {
+        width: 100vw !important;
+        font-size: 1em !important;
+    }
 }
