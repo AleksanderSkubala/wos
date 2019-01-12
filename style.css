@@ -12,6 +12,8 @@ html, body{
 
     text-align: center;
     font-family: 'Sarabun', sans-serif;
+
+    margin-bottom: 50px;
 }
 
 h1 {
@@ -23,7 +25,9 @@ h1 {
 .description {
     font-weight: bold;
     font-size: 1.3em;
-    margin: 30px;
+    margin: 30px auto;
+
+    max-width: 50%;
 }
 
 .grid {
@@ -42,8 +46,9 @@ h1 {
     -ms-transition: transform .3s ease;
     -webkit-transition: transform .3s ease;
     transition: transform .3s ease;
-    
+
     background-color: silver;
+    background-position: 30% 40%;
 }
 
 .itemGrid:hover {
@@ -63,7 +68,7 @@ h1 {
     .grid {
         grid-template-columns: auto !important;
     }
-    
+
     .container {
         width: 90vw !important;
         font-size: 1em !important;
