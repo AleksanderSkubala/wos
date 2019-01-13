@@ -18,6 +18,12 @@
     <body>
         <div class="container">
             <h1>NEWS API</h1>
+            <div class="choose">
+                <input type="radio" name="category" value="top" id="top" checked="checked"/>
+                <label for="top" onclick="getResponse(th)">Topowe nagłówki</label>
+                <input type="radio" name="category" value="politics" id="politics"/>
+                <label for="politics" onclick="getResponse(everything)">Polityka</label>
+            </div>
             <div class="description"></div>
             <div class="grid"></div>
             <div class="footer">

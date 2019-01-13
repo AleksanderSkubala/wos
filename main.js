@@ -1,20 +1,30 @@
 //'onload' data
 
-var url = 'https://newsapi.org/v2/everything?'+
-           'q=strajk&'+    //searching query
+var everything = 'https://newsapi.org/v2/everything?'+
+           'q=polityka&'+    //searching query
            'from=2019-01-05&'+   //from date
            'sortBy=popularity,relevancy&'+    //sortBy
+           'apiKey=7d3aa33090004b94aa83763a7c2730f1';    //apiKey
+
+var th = 'https://newsapi.org/v2/top-headlines?'+
+           'country=pl&'+    //country
+           'category=politics&'+   //category
            'apiKey=7d3aa33090004b94aa83763a7c2730f1';    //apiKey
 
 
 var des = document.querySelector('.description');
 var grid = document.querySelector('.grid');
+var descriptionText = 'Oto najbardziej klikane nagłówki w Polsce:';
 
 //getting NewsApi result
-getResponse(url);
+getResponse(th);
 
-function getResponse(surl){
-    axios.get(surl)
+function getResponse(q){
+    grid.innerHTML = '';
+
+    (q===everything) ? descriptionText = 'Oto artykuły o polityce z przed tygodnia:' : 'Oto najbardziej klikane nagłówki w Polsce:';
+
+    axios.get(q)
     .then(response => accessGranted(response))
     .catch(error => accessDenied(error));
 }
@@ -26,13 +36,13 @@ function accessDenied(err) {
 
 function accessGranted(result) {
     const data = result.data.articles;
-    des.innerHTML = 'Oto najbardziej klikane nagłówki w Polsce: '
+    des.innerHTML = descriptionText;
 
     data.forEach(item => {
-        console.log(item.title);
+        console.log(item);
 
         var title = '<b>'+item.title.substring(0, 35)+'...</b>';
-        var description = item.description.substring(0, 45)+'...';
+        var description = (item.description) ? item.description.substring(0, 45)+'...' : '';
         var url = item.url;
         var img = item.urlToImage;
 
