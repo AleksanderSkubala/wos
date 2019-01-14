@@ -1,5 +1,6 @@
 //'onload' data
 
+const categories = ['business', 'technology', 'science']
 var everything = 'https://newsapi.org/v2/everything?'+
            'q=polityka&'+    //searching query
            'from=2019-01-05&'+   //from date
@@ -11,13 +12,18 @@ var th = 'https://newsapi.org/v2/top-headlines?'+
            'category=politics&'+   //category
            'apiKey=7d3aa33090004b94aa83763a7c2730f1';    //apiKey
 
+var thEmpty = 'https://newsapi.org/v2/top-headlines?'+
+           'country=pl&'+    //country
+           'apiKey=7d3aa33090004b94aa83763a7c2730f1&'+    //apiKey
+           'category=';   //category
+
 
 var des = document.querySelector('.description');
 var grid = document.querySelector('.grid');
 var descriptionText = 'Oto najbardziej klikane nagłówki w Polsce:';
 
 //getting NewsApi result
-getResponse(th);
+getResponse(th); //<-auto loaded
 
 function getResponse(q){
     grid.innerHTML = '';
@@ -39,8 +45,6 @@ function accessGranted(result) {
     des.innerHTML = descriptionText;
 
     data.forEach(item => {
-        console.log(item);
-
         var title = '<b>'+item.title.substring(0, 35)+'...</b>';
         var description = (item.description) ? item.description.substring(0, 45)+'...' : '';
         var url = item.url;
