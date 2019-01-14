@@ -28,7 +28,12 @@ getResponse(th); //<-auto loaded
 function getResponse(q){
     grid.innerHTML = '';
 
-    (q===everything) ? descriptionText = 'Oto artykuły o polityce z przed tygodnia:' : 'Oto najbardziej klikane nagłówki w Polsce:';
+    (q===everything) ? descriptionText = 'Oto artykuły o polityce z przed tygodnia:' :
+    (q===th) ? descriptionText = 'Oto najbardziej klikane nagłówki w Polsce:' :
+    (q===thEmpty+categories[0]) ? descriptionText = 'Oto artykuły o biznesie z przed tygodnia:' :
+    (q===thEmpty+categories[1]) ? descriptionText = 'Oto artykuły o technologii z przed tygodnia:' :
+    (q===thEmpty+categories[2]) ? descriptionText = 'Oto artykuły o nauce z przed tygodnia:' : '';
+
 
     axios.get(q)
     .then(response => accessGranted(response))
@@ -46,7 +51,7 @@ function accessGranted(result) {
 
     data.forEach(item => {
         var title = '<b>'+item.title.substring(0, 35)+'...</b>';
-        var description = (item.description) ? item.description.substring(0, 45)+'...' : '';
+        var description = (item.description && item.description!='&nbsp;') ? item.description.substring(0, 45)+'...' : '';
         var url = item.url;
         var img = item.urlToImage;
 
